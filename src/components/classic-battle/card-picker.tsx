@@ -22,7 +22,7 @@ export default function CardPicker({
   isGameReady,
 }: CardPickerProps) {
   return (
-    <div className="flex flex-col justify-center items-center mt-10">
+    <div className="flex flex-col justify-center items-center mt-5">
       <FormControl className="w-[200px]">
         <InputLabel>Card type</InputLabel>
         <Select

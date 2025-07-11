@@ -19,7 +19,7 @@ function App() {
       <div className="min-h-screen bg-slate-200">
         <Header />
 
-        <div className="grid grid-cols-2 gap-5 w-2/3 justify-self-center my-10">
+        <div className="grid grid-cols-2 gap-5 w-2/3 justify-self-center my-5">
           <Button
             size="large"
             variant="contained"

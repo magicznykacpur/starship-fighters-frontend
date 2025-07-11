@@ -11,14 +11,27 @@ import { getRandomInt } from "utils/random-numbers";
 import CardPicker from "./card-picker";
 import PersonCards from "./person-cards";
 import StarshipCards from "./starship-cards";
+import GameMode from "./game-mode";
 
 type CardType = "person" | "starship";
 type ResourceType = StarshipResources | PersonResources | "";
+export type GameMode = "single-player" | "two-players";
+export type Score = {
+  playerOne: number;
+  playerTwo: number;
+  roundFinished: boolean;
+};
 
 export default function ClassicBattle() {
   const { data: starshipsData } = useStarships();
   const { data: peopleData } = usePeople();
 
+  const [gameMode, setGameMode] = useState<GameMode>("single-player");
+  const [score, setScore] = useState<Score>({
+    playerOne: 0,
+    playerTwo: 0,
+    roundFinished: false,
+  });
   const [cardType, setCardType] = useState<CardType>("person");
   const [resource, setResource] = useState<ResourceType>("");
 
@@ -33,6 +46,7 @@ export default function ClassicBattle() {
   const resetCards = () => {
     setPersonCards([]);
     setStarshipCards([]);
+    setScore({ ...score, roundFinished: false });
   };
 
   const [personCards, setPersonCards] = useState<PersonCard[]>([]);
@@ -64,11 +78,25 @@ export default function ClassicBattle() {
 
   const decideWinnerPersonCard = () => {
     if (getPersonCardResource(0) > getPersonCardResource(1)) {
+      !score.roundFinished &&
+        setScore({
+          ...score,
+          playerOne: score.playerOne + 1,
+          roundFinished: true,
+        });
+
       setPersonCards([
         { ...personCards[0], won: true },
         { ...personCards[1], won: false },
       ]);
     } else {
+      !score.roundFinished &&
+        setScore({
+          ...score,
+          playerTwo: score.playerTwo + 1,
+          roundFinished: true,
+        });
+
       setPersonCards([
         { ...personCards[0], won: false },
         { ...personCards[1], won: true },
@@ -81,11 +109,25 @@ export default function ClassicBattle() {
 
   const decideWinnerStarshipCard = () => {
     if (getStarshipCardResource(0) > getStarshipCardResource(1)) {
+      !score.roundFinished &&
+        setScore({
+          ...score,
+          playerOne: score.playerOne + 1,
+          roundFinished: true,
+        });
+
       setStarshipCards([
         { ...starshipCards[0], won: true },
         { ...starshipCards[1], won: false },
       ]);
     } else {
+      !score.roundFinished &&
+        setScore({
+          ...score,
+          playerTwo: score.playerTwo + 1,
+          roundFinished: true,
+        });
+
       setStarshipCards([
         { ...starshipCards[0], won: false },
         { ...starshipCards[1], won: true },
@@ -105,6 +147,8 @@ export default function ClassicBattle() {
 
   return (
     <div className="flex flex-col items-center">
+      <GameMode gameMode={gameMode} score={score} setGameMode={setGameMode} />
+
       <CardPicker
         cardType={cardType}
         setCardType={handleCardTypeChange}
