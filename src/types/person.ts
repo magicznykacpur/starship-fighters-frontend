@@ -12,4 +12,4 @@ export type Person = {
   homeworld: string;
 };
 
-export type PersonResources = "height" | "mass" | "birthyear";
+export type PersonResources = "height" | "mass" | "birthYear";
