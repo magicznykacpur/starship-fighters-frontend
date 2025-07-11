@@ -2,11 +2,11 @@ import { type SelectChangeEvent } from "@mui/material/Select";
 import { useState } from "react";
 import type { PersonResources } from "types/person";
 import type { StarshipResources } from "types/starships";
-import BattleControl from "./battle-control";
-import People from "./people";
+import People from "./display/people";
 import PeopleBattleOutcome from "./people-battle-outcome";
-import Starships from "./starships";
+import Starships from "./display/starships";
 import StarshipsBattleOutcome from "./starships-battle-outcome";
+import BattleControl from "./controls/battle-control";
 
 type BattleType = "people" | "starships";
 type ResourceType = StarshipResources | PersonResources | "";

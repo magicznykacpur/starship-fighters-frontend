@@ -8,7 +8,9 @@ export default function People() {
 
   return (
     <>
-      {isFetching && <Loader2 size={48} />}
+      {isFetching && (
+        <Loader2 size={42} className="animate-spin justify-self-center mt-20" />
+      )}
 
       {data && (
         <>
