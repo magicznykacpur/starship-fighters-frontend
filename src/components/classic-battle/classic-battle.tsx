@@ -34,6 +34,9 @@ export default function ClassicBattle() {
   });
   const [cardType, setCardType] = useState<CardType>("person");
   const [resource, setResource] = useState<ResourceType>("");
+  const [personCards, setPersonCards] = useState<PersonCard[]>([]);
+  const [starshipCards, setStarshipCards] = useState<StarshipCard[]>([]);
+  const [prevIndex, setPrevIndex] = useState<number | undefined>();
 
   const handleCardTypeChange = (event: SelectChangeEvent) => {
     resetCards();
@@ -49,16 +52,14 @@ export default function ClassicBattle() {
     setScore({ ...score, roundFinished: false });
   };
 
-  const [personCards, setPersonCards] = useState<PersonCard[]>([]);
-  const [starshipCards, setStarshipCards] = useState<StarshipCard[]>([]);
-
   const selectRandomFighter = () => {
     const maxRange =
       cardType === "person"
         ? peopleData!.allPeople.length
         : starshipsData!.allStarships.length;
 
-    const randomIndex = getRandomInt(0, maxRange);
+    const randomIndex = getRandomInt(0, maxRange, prevIndex);
+    setPrevIndex(randomIndex);
 
     if (cardType === "person") {
       setPersonCards([
