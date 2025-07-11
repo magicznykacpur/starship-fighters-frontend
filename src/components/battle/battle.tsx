@@ -1,54 +1,58 @@
-import Button from "@mui/material/Button";
-import MenuItem from "@mui/material/MenuItem";
-import Select, { type SelectChangeEvent } from "@mui/material/Select";
+import { type SelectChangeEvent } from "@mui/material/Select";
 import { useState } from "react";
+import BattlePicker from "./battle-picker";
 import People from "./people";
 import Starships from "./starships";
+import type { StarshipResources } from "types/starships";
+import type { PersonResources } from "types/person";
 
 type BattleType = "people" | "starships";
+type ResourceType = StarshipResources | PersonResources | "";
 
 export default function Battle() {
   const [battleStarted, setBattleStarted] = useState(false);
   const [battleType, setBattleType] = useState<BattleType>("starships");
+  const [resource, setResource] = useState<ResourceType>("");
 
-  const handleSelectChange = (event: SelectChangeEvent) =>
+  const handleBattleTypeChange = (event: SelectChangeEvent) => {
+    setResource("");
     setBattleType(event.target.value as BattleType);
+  };
 
-  const onStarBattleClick = () => setBattleStarted(true);
+  const handleResourceChange = (event: SelectChangeEvent) =>
+    setResource(event.target.value as ResourceType);
+
+  const onStarBattleClick = () => {
+    if (resource === "") {
+      alert("You must select a resource to fight againts.");
+      return;
+    }
+
+    setBattleStarted(true);
+  };
 
   return (
     <div>
       {!battleStarted && (
-        <div className="flex flex-col justify-center items-center mt-10">
-          <Select
-            value={battleType}
-            label="Age"
-            onChange={handleSelectChange}
-            className="text-black mb-8"
-          >
-            <MenuItem value="people">People</MenuItem>
-            <MenuItem value="starships">Starships</MenuItem>
-          </Select>
+        <>
+          <BattlePicker
+            battleType={battleType}
+            resource={resource}
+            handleBattleTypeChange={handleBattleTypeChange}
+            handleResourceTypeChange={handleResourceChange}
+            onStartBattleClick={onStarBattleClick}
+          />
 
-          <Button
-            onClick={onStarBattleClick}
-            variant="outlined"
-            color="success"
-            size="medium"
-          >
-            Start battle
-          </Button>
-        </div>
+          <div className="grid grid-cols-2">
+            <div>
+              <Starships />
+            </div>
+            <div>
+              <People />
+            </div>
+          </div>
+        </>
       )}
-
-      <div className="grid grid-cols-2">
-        <div>
-          <Starships />
-        </div>
-        <div>
-          <People />
-        </div>
-      </div>
     </div>
   );
 }

@@ -13,3 +13,10 @@ export type Starship = {
   updatedAt: string;
   crewMembers: number;
 };
+
+export type StarshipResources =
+  | "length"
+  | "cargoCapacity"
+  | "maxSpeed"
+  | "hyperdriveRating"
+  | "crewMembers";
