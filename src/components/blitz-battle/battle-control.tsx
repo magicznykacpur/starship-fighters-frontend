@@ -40,7 +40,7 @@ export default function BattleControl({
       <ResourceControl
         resource={resource}
         resources={
-          battleType === "people" ? starshipResources : personResources
+          battleType === "people" ? personResources : starshipResources
         }
         handleResourceTypeChange={handleResourceTypeChange}
       />

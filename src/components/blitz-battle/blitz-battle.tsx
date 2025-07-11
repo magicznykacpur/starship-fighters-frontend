@@ -25,7 +25,7 @@ export default function BlitzBattle() {
 
   const onStarBattleClick = () => {
     if (resource === "") {
-      toast.warning("You must select a resource to fight againts.");
+      toast.error("You must select a resource to fight againts.");
       return;
     }
 
