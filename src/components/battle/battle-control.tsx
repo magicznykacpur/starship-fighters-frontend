@@ -7,7 +7,7 @@ import type { PersonResources } from "types/person";
 import type { StarshipResources } from "types/starships";
 import ResourceControl from "./resource-control";
 
-type BattlePickerProps = {
+type BattleControlProps = {
   battleType: "starships" | "people";
   resource: PersonResources | StarshipResources | "";
   handleBattleTypeChange: (event: SelectChangeEvent) => void;
@@ -23,15 +23,15 @@ const starshipResources = [
   "crewMembers",
 ];
 
-const personResources = ["height", "mass", "birthyear"];
+const personResources = ["height", "mass", "birthYear"];
 
-export default function BattlePicker({
+export default function BattleControl({
   battleType,
   resource,
   handleBattleTypeChange,
   handleResourceTypeChange,
   onStartBattleClick,
-}: BattlePickerProps) {
+}: BattleControlProps) {
   return (
     <div className="flex flex-col justify-center items-center mt-10">
       <FormControl className="w-[200px]">
@@ -62,7 +62,7 @@ export default function BattlePicker({
 
       <Button
         onClick={onStartBattleClick}
-        variant="outlined"
+        variant="contained"
         color="success"
         size="medium"
         className="w-[200px]"

@@ -1,10 +1,11 @@
 import { type SelectChangeEvent } from "@mui/material/Select";
 import { useState } from "react";
-import BattlePicker from "./battle-picker";
-import People from "./people";
-import Starships from "./starships";
-import type { StarshipResources } from "types/starships";
 import type { PersonResources } from "types/person";
+import type { StarshipResources } from "types/starships";
+import BattleControl from "./battle-control";
+import People from "./people";
+import PeopleBattleOutcome from "./people-outcome";
+import Starships from "./starships";
 
 type BattleType = "people" | "starships";
 type ResourceType = StarshipResources | PersonResources | "";
@@ -31,11 +32,13 @@ export default function Battle() {
     setBattleStarted(true);
   };
 
+  const handleResetBattle = () => setBattleStarted(false);
+
   return (
     <div>
       {!battleStarted && (
         <>
-          <BattlePicker
+          <BattleControl
             battleType={battleType}
             resource={resource}
             handleBattleTypeChange={handleBattleTypeChange}
@@ -53,6 +56,19 @@ export default function Battle() {
           </div>
         </>
       )}
+
+      {battleStarted &&
+        (battleType === "people" ? (
+          <PeopleBattleOutcome
+            resource={resource as PersonResources}
+            handleResetBattle={handleResetBattle}
+          />
+        ) : (
+          <PeopleBattleOutcome
+            resource={resource as PersonResources}
+            handleResetBattle={handleResetBattle}
+          />
+        ))}
     </div>
   );
 }
