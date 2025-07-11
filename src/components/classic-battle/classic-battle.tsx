@@ -104,7 +104,7 @@ export default function ClassicBattle() {
   const isGameReady = personCards.length === 2 || starshipCards.length === 2;
 
   return (
-    <div>
+    <div className="flex flex-col items-center">
       <CardPicker
         cardType={cardType}
         setCardType={handleCardTypeChange}
@@ -113,7 +113,7 @@ export default function ClassicBattle() {
         isGameReady={isGameReady}
       />
 
-      <div className="flex w-full justify-center pl-6">
+      <div className="flex justify-around w-[80%] mt-10">
         {cardType === "starship" && (
           <StarshipCards starshipCards={starshipCards} />
         )}

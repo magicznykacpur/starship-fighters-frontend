@@ -15,7 +15,12 @@ export default function StarshipCard({
 }: StarshipCardProps) {
   return (
     <Card
-      sx={{ maxWidth: 420, minHeight: 320, background: background }}
+      sx={{
+        minWidth: 360,
+        maxWidth: 420,
+        minHeight: 320,
+        background: background,
+      }}
       className={className}
     >
       <CardContent className="mt-4">

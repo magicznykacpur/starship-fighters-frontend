@@ -35,7 +35,7 @@ export default function CardPicker({
         </Select>
       </FormControl>
 
-      <div className="grid grid-cols-2 gap-5 w-1/2">
+      <div className="grid grid-cols-2 gap-5">
         <Button
           variant="contained"
           color="success"
