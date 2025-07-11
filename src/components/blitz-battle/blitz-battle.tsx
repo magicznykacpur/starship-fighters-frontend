@@ -11,7 +11,7 @@ import BattleControl from "./controls/battle-control";
 type BattleType = "people" | "starships";
 type ResourceType = StarshipResources | PersonResources | "";
 
-export default function Battle() {
+export default function BlitzBattle() {
   const [battleStarted, setBattleStarted] = useState(false);
   const [battleType, setBattleType] = useState<BattleType>("starships");
   const [resource, setResource] = useState<ResourceType>("");
@@ -38,24 +38,13 @@ export default function Battle() {
   return (
     <div>
       {!battleStarted && (
-        <>
-          <BattleControl
-            battleType={battleType}
-            resource={resource}
-            handleBattleTypeChange={handleBattleTypeChange}
-            handleResourceTypeChange={handleResourceChange}
-            onStartBattleClick={onStarBattleClick}
-          />
-
-          <div className="grid grid-cols-2">
-            <div>
-              <Starships />
-            </div>
-            <div>
-              <People />
-            </div>
-          </div>
-        </>
+        <BattleControl
+          battleType={battleType}
+          resource={resource}
+          handleBattleTypeChange={handleBattleTypeChange}
+          handleResourceTypeChange={handleResourceChange}
+          onStartBattleClick={onStarBattleClick}
+        />
       )}
 
       {battleStarted &&

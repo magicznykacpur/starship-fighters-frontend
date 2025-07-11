@@ -5,7 +5,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Select, { type SelectChangeEvent } from "@mui/material/Select";
 import type { PersonResources } from "types/person";
 import type { StarshipResources } from "types/starships";
-import ResourceControl from "./resource-control";
+import ResourceControl from "../../controls/resource-control";
 
 type BattleControlProps = {
   battleType: "starships" | "people";
