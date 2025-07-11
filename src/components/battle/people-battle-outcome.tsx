@@ -47,7 +47,7 @@ export default function PeopleBattleOutcome({
     }
   };
 
-  useEffect(() => {
+  const playoutFight = () => {
     setSelectingRandom("started");
 
     const randomFighters = selectRandomPeople();
@@ -57,6 +57,10 @@ export default function PeopleBattleOutcome({
     decideWinner(randomFighters);
 
     setSelectingRandom("idle");
+  };
+
+  useEffect(() => {
+    playoutFight();
   }, []);
 
   return (
@@ -76,14 +80,14 @@ export default function PeopleBattleOutcome({
           variant="contained"
           size="medium"
           className="w-[200px]"
-          // onClick={() => handleResetBattle()}
+          onClick={playoutFight}
         >
           Fight again
         </Button>
       </div>
 
       <div className="text-2xl mt-10">
-        Two random fighters fighting against each others {resource}!
+        Two random people fighting against each others {resource}!
       </div>
       {selectingRandom === "started" && (
         <div className="mt-10 text-2xl font-bold">

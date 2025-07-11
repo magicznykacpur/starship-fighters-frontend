@@ -4,8 +4,9 @@ import type { PersonResources } from "types/person";
 import type { StarshipResources } from "types/starships";
 import BattleControl from "./battle-control";
 import People from "./people";
-import PeopleBattleOutcome from "./people-outcome";
+import PeopleBattleOutcome from "./people-battle-outcome";
 import Starships from "./starships";
+import StarshipsBattleOutcome from "./starships-battle-outcome";
 
 type BattleType = "people" | "starships";
 type ResourceType = StarshipResources | PersonResources | "";
@@ -64,8 +65,8 @@ export default function Battle() {
             handleResetBattle={handleResetBattle}
           />
         ) : (
-          <PeopleBattleOutcome
-            resource={resource as PersonResources}
+          <StarshipsBattleOutcome
+            resource={resource as StarshipResources}
             handleResetBattle={handleResetBattle}
           />
         ))}

@@ -4,11 +4,20 @@ import type { Starship } from "types/starships";
 
 type StarshipCardProps = {
   starship: Starship;
+  background?: string;
+  className?: string;
 };
 
-export default function StarshipCard({ starship }: StarshipCardProps) {
+export default function StarshipCard({
+  starship,
+  background,
+  className,
+}: StarshipCardProps) {
   return (
-    <Card sx={{ maxWidth: 420, minHeight: 320 }}>
+    <Card
+      sx={{ maxWidth: 420, minHeight: 320, background: background }}
+      className={className}
+    >
       <CardContent className="mt-4">
         <div className="flex justify-between w-full py-1">
           <span>Name:</span>
