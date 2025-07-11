@@ -1,5 +1,4 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import "./index.css";
 import Header from "components/ui/header";
 import Battle from "components/battle/battle";
 
