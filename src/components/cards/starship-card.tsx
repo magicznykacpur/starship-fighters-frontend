@@ -9,7 +9,7 @@ type StarshipCardProps = {
 export default function StarshipCard({ starship }: StarshipCardProps) {
   return (
     <Card sx={{ maxWidth: 420, minHeight: 320 }}>
-      <CardContent>
+      <CardContent className="mt-4">
         <div className="flex justify-between w-full py-1">
           <span>Name:</span>
           <span>

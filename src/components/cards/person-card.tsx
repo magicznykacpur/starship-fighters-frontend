@@ -4,12 +4,14 @@ import type { Person } from "types/person";
 
 type PersonCardProps = {
   person: Person;
+  background?: string,
+  className?: string,
 };
 
-export default function PersonCard({ person }: PersonCardProps) {
+export default function PersonCard({ person, background, className }: PersonCardProps) {
   return (
-    <Card sx={{ maxWidth: 420, minHeight: 320 }}>
-      <CardContent>
+    <Card sx={{ maxWidth: 420, minHeight: 320, background: background }} variant="elevation" className={className}>
+      <CardContent className="mt-4">
         <div className="flex justify-between w-full py-1">
           <span>Name:</span>
           <span>
