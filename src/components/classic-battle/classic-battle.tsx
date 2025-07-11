@@ -70,8 +70,8 @@ export default function ClassicBattle() {
       ]);
     } else {
       setPersonCards([
-        { ...personCards[1], won: true },
         { ...personCards[0], won: false },
+        { ...personCards[1], won: true },
       ]);
     }
   };
@@ -87,8 +87,8 @@ export default function ClassicBattle() {
       ]);
     } else {
       setStarshipCards([
-        { ...starshipCards[1], won: true },
         { ...starshipCards[0], won: false },
+        { ...starshipCards[1], won: true },
       ]);
     }
   };
