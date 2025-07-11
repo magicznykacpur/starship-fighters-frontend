@@ -59,37 +59,45 @@ export default function ClassicBattle() {
     }
   };
 
+  const getPersonCardResource = (index: number) =>
+    personCards[index].person[resource as PersonResources];
+
+  const decideWinnerPersonCard = () => {
+    if (getPersonCardResource(0) > getPersonCardResource(1)) {
+      setPersonCards([
+        { ...personCards[0], won: true },
+        { ...personCards[1], won: false },
+      ]);
+    } else {
+      setPersonCards([
+        { ...personCards[1], won: true },
+        { ...personCards[0], won: false },
+      ]);
+    }
+  };
+
+  const getStarshipCardResource = (index: number) =>
+    starshipCards[index].starship[resource as StarshipResources];
+
+  const decideWinnerStarshipCard = () => {
+    if (getStarshipCardResource(0) > getStarshipCardResource(1)) {
+      setStarshipCards([
+        { ...starshipCards[0], won: true },
+        { ...starshipCards[1], won: false },
+      ]);
+    } else {
+      setStarshipCards([
+        { ...starshipCards[1], won: true },
+        { ...starshipCards[0], won: false },
+      ]);
+    }
+  };
+
   const decideWinner = () => {
     if (cardType === "person") {
-      if (
-        personCards[0].person[resource as PersonResources] >
-        personCards[1].person[resource as PersonResources]
-      ) {
-        setPersonCards([
-          { ...personCards[0], won: true },
-          { ...personCards[1], won: false },
-        ]);
-      } else {
-        setPersonCards([
-          { ...personCards[1], won: true },
-          { ...personCards[0], won: false },
-        ]);
-      }
+      decideWinnerPersonCard();
     } else {
-      if (
-        starshipCards[0].starship[resource as StarshipResources] >
-        starshipCards[1].starship[resource as StarshipResources]
-      ) {
-        setStarshipCards([
-          { ...starshipCards[0], won: true },
-          { ...starshipCards[1], won: false },
-        ]);
-      } else {
-        setStarshipCards([
-          { ...starshipCards[1], won: true },
-          { ...starshipCards[0], won: false },
-        ]);
-      }
+      decideWinnerStarshipCard();
     }
   };
 
