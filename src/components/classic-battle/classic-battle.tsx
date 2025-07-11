@@ -1,41 +1,38 @@
 import type { SelectChangeEvent } from "@mui/material";
 import Button from "@mui/material/Button";
+import PersonCard from "components/cards/person-card";
+import StarshipCard from "components/cards/starship-card";
+import GameMode, {
+  type GameModeType,
+  type ScoreType,
+} from "components/classic-battle/game-mode";
 import ResourceControl from "components/controls/resource-control";
 import { personResources, starshipResources } from "constants/resources";
 import usePeople from "hooks/usePeople";
 import useStarships from "hooks/useStarships";
 import { useState } from "react";
-import type { PersonCard, PersonResources } from "types/person";
-import type { StarshipCard, StarshipResources } from "types/starships";
+import type { PersonCardType, PersonResources } from "types/person";
+import type { StarshipCardType, StarshipResources } from "types/starships";
 import { getRandomInt } from "utils/random-numbers";
 import CardPicker from "./card-picker";
-import PersonCards from "./person-cards";
-import StarshipCards from "./starship-cards";
-import GameMode from "./game-mode";
 
 type CardType = "person" | "starship";
 type ResourceType = StarshipResources | PersonResources | "";
-export type GameMode = "single-player" | "two-players";
-export type Score = {
-  playerOne: number;
-  playerTwo: number;
-  roundFinished: boolean;
-};
 
 export default function ClassicBattle() {
   const { data: starshipsData } = useStarships();
   const { data: peopleData } = usePeople();
 
-  const [gameMode, setGameMode] = useState<GameMode>("single-player");
-  const [score, setScore] = useState<Score>({
+  const [gameMode, setGameMode] = useState<GameModeType>("single-player");
+  const [score, setScore] = useState<ScoreType>({
     playerOne: 0,
     playerTwo: 0,
     roundFinished: false,
   });
   const [cardType, setCardType] = useState<CardType>("person");
   const [resource, setResource] = useState<ResourceType>("");
-  const [personCards, setPersonCards] = useState<PersonCard[]>([]);
-  const [starshipCards, setStarshipCards] = useState<StarshipCard[]>([]);
+  const [personCards, setPersonCards] = useState<PersonCardType[]>([]);
+  const [starshipCards, setStarshipCards] = useState<StarshipCardType[]>([]);
   const [prevIndex, setPrevIndex] = useState<number | undefined>();
 
   const handleCardTypeChange = (event: SelectChangeEvent) => {
@@ -159,10 +156,26 @@ export default function ClassicBattle() {
       />
 
       <div className="flex justify-around w-[80%] mt-10">
-        {cardType === "starship" && (
-          <StarshipCards starshipCards={starshipCards} />
-        )}
-        {cardType === "person" && <PersonCards personCards={personCards} />}
+        {cardType === "starship" &&
+          starshipCards.map((card) => (
+            <StarshipCard
+              key={card.starship.id}
+              starship={card.starship}
+              {...(card.won !== undefined && {
+                ...{ background: card.won ? "#a7f3d0" : "#fecdd3" },
+              })}
+            />
+          ))}
+        {cardType === "person" &&
+          personCards.map((card) => (
+            <PersonCard
+              key={card.person.id}
+              person={card.person}
+              {...(card.won !== undefined && {
+                ...{ background: card.won ? "#a7f3d0" : "#fecdd3" },
+              })}
+            />
+          ))}
       </div>
 
       {isGameReady && (

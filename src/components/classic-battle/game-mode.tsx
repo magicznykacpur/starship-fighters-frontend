@@ -1,10 +1,16 @@
 import Button from "@mui/material/Button";
-import type { GameMode, Score } from "./classic-battle";
+
+export type GameModeType = "single-player" | "two-players";
+export type ScoreType = {
+  playerOne: number;
+  playerTwo: number;
+  roundFinished: boolean;
+};
 
 type GameModeProps = {
-  gameMode: GameMode;
-  score: Score;
-  setGameMode: (mode: GameMode) => void;
+  gameMode: GameModeType;
+  score: ScoreType;
+  setGameMode: (mode: GameModeType) => void;
 };
 
 export default function GameMode({

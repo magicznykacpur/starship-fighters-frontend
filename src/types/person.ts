@@ -14,4 +14,4 @@ export type Person = {
 
 export type PersonResources = "height" | "mass" | "birthYear";
 
-export type PersonCard = { person: Person; won?: boolean };
+export type PersonCardType = { person: Person; won?: boolean };

@@ -2,7 +2,11 @@ import Button from "@mui/material/Button";
 import StarshipCard from "components/cards/starship-card";
 import useStarships from "hooks/useStarships";
 import { useEffect, useState } from "react";
-import type { Starship, StarshipResources } from "types/starships";
+import {
+  type StarshipCardType,
+  type Starship,
+  type StarshipResources,
+} from "types/starships";
 import { getRandomInt } from "utils/random-numbers";
 
 type StarshipsBattleOutcomeProps = {
@@ -10,57 +14,49 @@ type StarshipsBattleOutcomeProps = {
   handleResetBattle: () => void;
 };
 
-type SelectingRandomStatus = "started" | "finished" | "idle";
-
 export default function StarshipsBattleOutcome({
   resource,
   handleResetBattle,
 }: StarshipsBattleOutcomeProps) {
   const { data } = useStarships();
-  const [selectingRandom, setSelectingRandom] =
-    useState<SelectingRandomStatus>("idle");
 
+  const [starshipCards, setStarshipCards] = useState<StarshipCardType[]>([]);
   const [winner, setWinner] = useState<Starship>();
-  const [loser, setLoser] = useState<Starship>();
 
   const selectRandomStarships = (): Starship[] => {
     const peopleLenght = data!.allStarships.length;
 
     let firstIdx = getRandomInt(0, peopleLenght);
-    let secondIdx = getRandomInt(0, peopleLenght);
-
-    while (firstIdx === secondIdx) {
-      firstIdx = getRandomInt(0, peopleLenght);
-      secondIdx = getRandomInt(0, peopleLenght);
-    }
+    let secondIdx = getRandomInt(0, peopleLenght, firstIdx);
 
     return [data!.allStarships[firstIdx], data!.allStarships[secondIdx]];
   };
 
   const decideWinner = (fighters: Starship[]) => {
     if (fighters[0][resource] > fighters[1][resource]) {
+      setStarshipCards([
+        { starship: fighters[0], won: true },
+        { starship: fighters[1], won: false },
+      ]);
+
       setWinner(fighters[0]);
-      setLoser(fighters[1]);
     } else {
+      setStarshipCards([
+        { starship: fighters[0], won: false },
+        { starship: fighters[1], won: true },
+      ]);
+
       setWinner(fighters[1]);
-      setLoser(fighters[0]);
     }
   };
 
   const playoutFight = () => {
-    setSelectingRandom("started");
-
     const randomFighters = selectRandomStarships();
-
-    setSelectingRandom("finished");
-
     decideWinner(randomFighters);
-
-    setSelectingRandom("idle");
   };
 
   useEffect(() => {
-    playoutFight();
+    data?.allStarships && playoutFight();
   }, []);
 
   return (
@@ -89,33 +85,25 @@ export default function StarshipsBattleOutcome({
       <div className="text-2xl mt-10">
         Two random starships fighting against each others {resource}!
       </div>
-      
-      {selectingRandom === "started" && (
-        <div className="mt-10 text-2xl font-bold">
-          Selecting random fighters...
-        </div>
-      )}
 
-      {winner && loser && (
-        <>
-          <div className="grid grid-cols-2 gap-5 mt-15 w-2/3">
-            <StarshipCard
-              starship={winner}
-              background="#a7f3d0"
-              className="justify-self-end lg:w-[420px] md:w-[320px] sm:w-[220px]"
-            />
-            <StarshipCard
-              starship={loser}
-              background="#fecdd3"
-              className="lg:w-[420px] md:w-[320px] sm:w-[220px]"
-            />
-          </div>
-          <div className="flex justify-center text-emerald-700 text-2xl mt-15">
-            The winner is {winner.name} with
-            <strong className="mx-2">{winner[resource]}</strong>
-            {resource}!
-          </div>
-        </>
+      <div className="flex justify-around w-[80%] mt-10">
+        {starshipCards.map((card) => (
+          <StarshipCard
+            key={card.starship.id}
+            starship={card.starship}
+            {...(card.won !== undefined && {
+              ...{ background: card.won ? "#a7f3d0" : "#fecdd3" },
+            })}
+          />
+        ))}
+      </div>
+
+      {winner && (
+        <div className="flex justify-center text-emerald-700 text-2xl mt-15">
+          The winner is {winner.name} with
+          <strong className="mx-2">{winner[resource]}</strong>
+          {resource}!
+        </div>
       )}
     </div>
   );

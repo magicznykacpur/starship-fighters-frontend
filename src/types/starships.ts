@@ -21,4 +21,4 @@ export type StarshipResources =
   | "hyperdriveRating"
   | "crewMembers";
 
-export type StarshipCard = { starship: Starship; won?: boolean };
+export type StarshipCardType = { starship: Starship; won?: boolean };
