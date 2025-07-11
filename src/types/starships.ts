@@ -20,3 +20,5 @@ export type StarshipResources =
   | "maxSpeed"
   | "hyperdriveRating"
   | "crewMembers";
+
+export type StarshipCard = { starship: Starship; won?: boolean };

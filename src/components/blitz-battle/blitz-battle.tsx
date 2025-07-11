@@ -2,11 +2,10 @@ import { type SelectChangeEvent } from "@mui/material/Select";
 import { useState } from "react";
 import type { PersonResources } from "types/person";
 import type { StarshipResources } from "types/starships";
-import People from "./display/people";
+import BattleControl from "./battle-control";
 import PeopleBattleOutcome from "./people-battle-outcome";
-import Starships from "./display/starships";
 import StarshipsBattleOutcome from "./starships-battle-outcome";
-import BattleControl from "./controls/battle-control";
+import { toast } from "react-toastify";
 
 type BattleType = "people" | "starships";
 type ResourceType = StarshipResources | PersonResources | "";
@@ -26,7 +25,7 @@ export default function BlitzBattle() {
 
   const onStarBattleClick = () => {
     if (resource === "") {
-      alert("You must select a resource to fight againts.");
+      toast.warning("You must select a resource to fight againts.");
       return;
     }
 

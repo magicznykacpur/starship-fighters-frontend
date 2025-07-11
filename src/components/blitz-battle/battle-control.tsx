@@ -3,9 +3,10 @@ import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import Select, { type SelectChangeEvent } from "@mui/material/Select";
+import ResourceControl from "components/controls/resource-control";
+import { personResources, starshipResources } from "constants/resources";
 import type { PersonResources } from "types/person";
 import type { StarshipResources } from "types/starships";
-import ResourceControl from "../../controls/resource-control";
 
 type BattleControlProps = {
   battleType: "starships" | "people";
@@ -14,16 +15,6 @@ type BattleControlProps = {
   handleResourceTypeChange: (event: SelectChangeEvent) => void;
   onStartBattleClick: () => void;
 };
-
-const starshipResources = [
-  "length",
-  "cargoCapacity",
-  "maxSpeed",
-  "hyperdriveRating",
-  "crewMembers",
-];
-
-const personResources = ["height", "mass", "birthYear"];
 
 export default function BattleControl({
   battleType,
@@ -46,19 +37,13 @@ export default function BattleControl({
         </Select>
       </FormControl>
 
-      {battleType === "starships" ? (
-        <ResourceControl
-          resource={resource}
-          resources={starshipResources}
-          handleResourceTypeChange={handleResourceTypeChange}
-        />
-      ) : (
-        <ResourceControl
-          resource={resource}
-          resources={personResources}
-          handleResourceTypeChange={handleResourceTypeChange}
-        />
-      )}
+      <ResourceControl
+        resource={resource}
+        resources={
+          battleType === "people" ? starshipResources : personResources
+        }
+        handleResourceTypeChange={handleResourceTypeChange}
+      />
 
       <Button
         onClick={onStartBattleClick}

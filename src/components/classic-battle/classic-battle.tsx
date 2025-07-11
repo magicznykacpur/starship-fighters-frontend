@@ -1,29 +1,19 @@
+import type { SelectChangeEvent } from "@mui/material";
+import Button from "@mui/material/Button";
+import ResourceControl from "components/controls/resource-control";
+import { personResources, starshipResources } from "constants/resources";
 import usePeople from "hooks/usePeople";
 import useStarships from "hooks/useStarships";
 import { useState } from "react";
-import type { Person, PersonResources } from "types/person";
-import type { Starship, StarshipResources } from "types/starships";
-import CardPicker from "./card-picker";
+import type { PersonCard, PersonResources } from "types/person";
+import type { StarshipCard, StarshipResources } from "types/starships";
 import { getRandomInt } from "utils/random-numbers";
-import ResourceControl from "components/controls/resource-control";
-import Button from "@mui/material/Button";
-import type { SelectChangeEvent } from "@mui/material";
-import StarshipCards from "./starship-cards";
+import CardPicker from "./card-picker";
 import PersonCards from "./person-cards";
+import StarshipCards from "./starship-cards";
 
-type PersonCard = { person: Person; won?: boolean };
-type StarshipCard = { starship: Starship; won?: boolean };
 type CardType = "person" | "starship";
 type ResourceType = StarshipResources | PersonResources | "";
-
-const personResources = ["height", "mass", "birthYear"];
-const starshipResources = [
-  "length",
-  "cargoCapacity",
-  "maxSpeed",
-  "hyperdriveRating",
-  "crewMembers",
-];
 
 export default function ClassicBattle() {
   const { data: starshipsData } = useStarships();
@@ -121,7 +111,7 @@ export default function ClassicBattle() {
         )}
         {cardType === "person" && <PersonCards personCards={personCards} />}
       </div>
-      
+
       {isGameReady && (
         <div className="flex flex-col justify-self-center mt-10">
           <ResourceControl
