@@ -18,7 +18,7 @@
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
-    "baseUrl": "src"
+    "baseUrl": "src",
   },
-  "include": ["src"]
+  "include": ["src", "src/__tests__"]
 }

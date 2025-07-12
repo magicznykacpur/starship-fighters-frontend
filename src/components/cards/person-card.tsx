@@ -22,54 +22,55 @@ export default function PersonCard({
       }}
       variant="elevation"
       className={className}
+      data-testid={`person-${person.id}`}
     >
       <CardContent className="mt-4">
         <div className="flex justify-between w-full py-1">
           <span>Name:</span>
           <span>
-            <strong>{person.name}</strong>
+            <strong data-testid="name">{person.name}</strong>
           </span>
         </div>
         <div className="flex justify-between w-full py-1">
           <span>Height:</span>
           <span>
-            <strong>{person.height}</strong>
+            <strong data-testid="height">{person.height}</strong>
           </span>
         </div>
         <div className="flex justify-between w-full py-1">
           <span>Mass:</span>
           <span>
-            <strong>{person.mass}</strong>
+            <strong data-testid="mass">{person.mass}</strong>
           </span>
         </div>
         <div className="flex justify-between w-full py-1">
           <span>Hair color:</span>
           <span>
-            <strong>{person.hairColor}</strong>
+            <strong data-testid="hair-color">{person.hairColor}</strong>
           </span>
         </div>
         <div className="flex justify-between w-full py-1">
           <span>Skin color:</span>
           <span>
-            <strong>{person.skinColor}</strong>
+            <strong data-testid="skin-color">{person.skinColor}</strong>
           </span>
         </div>
         <div className="flex justify-between w-full py-1">
           <span>Eye color:</span>
           <span>
-            <strong>{person.eyeColor}</strong>
+            <strong data-testid="eye-color">{person.eyeColor}</strong>
           </span>
         </div>
         <div className="flex justify-between w-full py-1">
-          <span>Birthyear:</span>
+          <span>Birth year:</span>
           <span>
-            <strong>{person.birthYear}</strong>
+            <strong data-testid="birth-year">{person.birthYear}</strong>
           </span>
         </div>
         <div className="flex justify-between w-full py-1">
           <span>Homeworld:</span>
           <span>
-            <strong>{person.homeworld}</strong>
+            <strong data-testid="homeworld">{person.homeworld}</strong>
           </span>
         </div>
       </CardContent>

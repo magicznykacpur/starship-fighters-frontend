@@ -22,54 +22,55 @@ export default function StarshipCard({
         background: background,
       }}
       className={className}
+      data-testid={`starship-${starship.id}`}
     >
       <CardContent className="mt-4">
         <div className="flex justify-between w-full py-1">
           <span>Name:</span>
           <span>
-            <strong>{starship.name}</strong>
+            <strong data-testid="name">{starship.name}</strong>
           </span>
         </div>
         <div className="flex justify-between w-full py-1">
           <span>Model:</span>
           <span>
-            <strong>{starship.model}</strong>
+            <strong data-testid="model">{starship.model}</strong>
           </span>
         </div>
         <div className="flex justify-between w-full py-1">
           <span>Class:</span>
           <span>
-            <strong>{starship.starshipClass}</strong>
+            <strong data-testid="class">{starship.starshipClass}</strong>
           </span>
         </div>
         <div className="flex justify-between w-full py-1">
           <span>Length:</span>
           <span>
-            <strong>{starship.length}</strong>
+            <strong data-testid="length">{starship.length}</strong>
           </span>
         </div>
         <div className="flex justify-between w-full py-1">
           <span>Cargo capacity:</span>
           <span>
-            <strong>{starship.cargoCapacity}</strong>
+            <strong data-testid="cargo-capacity">{starship.cargoCapacity}</strong>
           </span>
         </div>
         <div className="flex justify-between w-full py-1">
           <span>Hyperdrive rating:</span>
           <span>
-            <strong>{starship.hyperdriveRating}</strong>
+            <strong data-testid="hyperdrive">{starship.hyperdriveRating}</strong>
           </span>
         </div>
         <div className="flex justify-between w-full py-1">
           <span>Max speed:</span>
           <span>
-            <strong>{starship.maxSpeed}</strong>
+            <strong data-testid="max-speed">{starship.maxSpeed}</strong>
           </span>
         </div>
         <div className="flex justify-between w-full py-1">
           <span>Crew members:</span>
           <span>
-            <strong>{starship.crewMembers}</strong>
+            <strong data-testid="crew-members">{starship.crewMembers}</strong>
           </span>
         </div>
       </CardContent>
