@@ -6,11 +6,9 @@ import GameMode, {
 import usePeople from "hooks/usePeople";
 import useStarships from "hooks/useStarships";
 import { useState } from "react";
-import CardSelect from "./card-select";
+import CardSelect, { type CardType } from "./card-select";
 import PeopleBattleOutcome from "./people-battle-outcome";
 import StarshipsBattleOutcome from "./starships-battle-outcome";
-
-type CardType = "person" | "starship";
 
 export default function Battle() {
   const { data: starshipsData } = useStarships();

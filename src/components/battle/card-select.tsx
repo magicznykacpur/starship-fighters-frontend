@@ -3,7 +3,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import Select, { type SelectChangeEvent } from "@mui/material/Select";
 
-type CardType = "person" | "starship";
+export type CardType = "person" | "starship";
 
 type CardSelectProps = {
   cardType: CardType;

@@ -1,9 +1,8 @@
 import type { SelectChangeEvent } from "@mui/material";
 import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import CardSelect from "components/battle/card-select";
+import CardSelect, { type CardType } from "components/battle/card-select";
 
-type CardType = "person" | "starship";
 
 describe("Card select", () => {
   it("should render card select", async () => {
