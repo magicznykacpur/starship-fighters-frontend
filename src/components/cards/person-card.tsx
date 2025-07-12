@@ -16,7 +16,6 @@ export default function PersonCard({
   return (
     <Card
       sx={{
-        minWidth: 360,
         maxWidth: 420,
         minHeight: 320,
         background: background,

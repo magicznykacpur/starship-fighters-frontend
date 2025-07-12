@@ -35,7 +35,12 @@ export default function Battle() {
 
   return (
     <div className="flex flex-col items-center mt-10">
-      <GameMode gameMode={gameMode} score={score} setGameMode={setGameMode} />
+      <GameMode
+        gameMode={gameMode}
+        score={score}
+        setGameMode={setGameMode}
+        setScore={setScore}
+      />
 
       <CardPicker cardType={cardType} setCardType={handleCardTypeChange} />
 

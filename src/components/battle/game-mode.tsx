@@ -11,12 +11,14 @@ type GameModeProps = {
   gameMode: GameModeType;
   score: ScoreType;
   setGameMode: (mode: GameModeType) => void;
+  setScore: (score: ScoreType) => void;
 };
 
 export default function GameMode({
   gameMode,
   score,
   setGameMode,
+  setScore,
 }: GameModeProps) {
   const pickColor = (scoreOne: number, scoreTwo: number) => {
     if (scoreOne === scoreTwo) return "text-blue-500";
@@ -24,20 +26,30 @@ export default function GameMode({
     if (scoreTwo > scoreOne) return "text-rose-700";
   };
 
+  const handleSinglePlayerMode = () => {
+    setScore({ playerOne: 0, playerTwo: 0, roundFinished: false });
+    setGameMode("single-player");
+  };
+
+  const handleTwoPlayerMode = () => {
+    setScore({ playerOne: 0, playerTwo: 0, roundFinished: false });
+    setGameMode("two-players");
+  };
+
   return (
     <>
-      <div className="grid grid-cols-2 gap-5">
+      <div className="grid grid-cols-2 gap-5 mb-5">
         <Button
           variant="outlined"
           disabled={gameMode === "single-player"}
-          onClick={() => setGameMode("single-player")}
+          onClick={() => handleSinglePlayerMode()}
         >
           Single player
         </Button>
         <Button
           variant="outlined"
           disabled={gameMode === "two-players"}
-          onClick={() => setGameMode("two-players")}
+          onClick={() => handleTwoPlayerMode()}
         >
           Two players
         </Button>

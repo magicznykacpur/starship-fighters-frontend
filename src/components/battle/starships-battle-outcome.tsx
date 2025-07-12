@@ -78,7 +78,7 @@ export default function StarshipsBattleOutcome({
   const isGameReady = cards.length === 2;
 
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className="flex flex-col justify-center items-center w-2/3">
       <div className="grid grid-cols-2 gap-5">
         <Button
           variant="contained"
@@ -93,11 +93,12 @@ export default function StarshipsBattleOutcome({
         </Button>
       </div>
 
-      <div className="flex justify-between mt-10">
+      <div className="flex justify-between mt-10 w-full xl:px-30 xl:justify-around">
         {cards.map((card) => (
           <StarshipCard
             key={card.starship.id}
             starship={card.starship}
+            className="sm:min-w-[180px] md:min-w-[260px] lg:min-w-[350px] xl:min-w-[380px]"
             {...(card.won !== undefined && {
               ...{ background: card.won ? "#a7f3d0" : "#fecdd3" },
             })}

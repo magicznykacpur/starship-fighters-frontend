@@ -16,7 +16,7 @@ export default function StarshipCard({
   return (
     <Card
       sx={{
-        minWidth: 360,
+        // minWidth: 380,
         maxWidth: 420,
         minHeight: 320,
         background: background,
