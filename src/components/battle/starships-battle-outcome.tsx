@@ -1,6 +1,6 @@
 import { Button, type SelectChangeEvent } from "@mui/material";
 import StarshipCard from "components/cards/starship-card";
-import ResourceControl from "components/battle/resource-control";
+import ResourceControl from "components/battle/resource-select";
 import { starshipResources } from "constants/resources";
 import { useState } from "react";
 import type {

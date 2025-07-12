@@ -1,6 +1,6 @@
 import { Button, type SelectChangeEvent } from "@mui/material";
+import ResourceSelect from "components/battle/resource-select";
 import PersonCard from "components/cards/person-card";
-import ResourceControl from "components/battle/resource-control";
 import { personResources } from "constants/resources";
 import { useState } from "react";
 import type { Person, PersonCardType, PersonResources } from "types/person";
@@ -70,11 +70,15 @@ export default function PeopleBattleOutcome({
       ]);
     }
   };
+
   const isGameReady = cards.length === 2;
 
   return (
-    <div className="flex flex-col justify-center items-center w-2/3">
-      <div className="grid grid-cols-2 gap-5">
+    <div
+      className="flex flex-col justify-center items-center w-2/3"
+      data-testid="people-battle-outcome"
+    >
+      <div className="grid grid-cols-2 gap-5" data-testid="people-controls">
         <Button
           variant="contained"
           color="success"
@@ -88,7 +92,10 @@ export default function PeopleBattleOutcome({
         </Button>
       </div>
 
-      <div className="flex justify-between mt-10 w-full xl:px-30 xl:justify-around">
+      <div
+        className="flex justify-between mt-10 w-full xl:px-30 xl:justify-around"
+        data-testid="cards"
+      >
         {cards.map((card) => (
           <PersonCard
             key={card.person.id}
@@ -102,8 +109,11 @@ export default function PeopleBattleOutcome({
       </div>
 
       {isGameReady && (
-        <div className="flex flex-col justify-self-center mt-10">
-          <ResourceControl
+        <div
+          className="flex flex-col justify-self-center mt-10"
+          data-testid="resource-control"
+        >
+          <ResourceSelect
             resource={resource}
             resources={personResources}
             handleResourceTypeChange={handleResourceTypeChange}
@@ -115,6 +125,7 @@ export default function PeopleBattleOutcome({
             className="w-[200px]"
             onClick={decideWinner}
             disabled={resource === ""}
+            data-testid="start-fight"
           >
             FIGHT
           </Button>

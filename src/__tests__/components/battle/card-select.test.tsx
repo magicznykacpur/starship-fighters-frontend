@@ -1,13 +1,7 @@
 import type { SelectChangeEvent } from "@mui/material";
-import {
-  render,
-  screen,
-  within,
-  act,
-  waitForElementToBeRemoved,
-} from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import CardPicker from "components/battle/card-picker";
+import CardPicker from "components/battle/card-select";
 
 type CardType = "person" | "starship";
 
@@ -30,11 +24,11 @@ describe("Card picker", () => {
 
     render(<CardPicker cardType={cardType} setCardType={setCardType} />);
 
-    const selectTrigger = within(screen.getByTestId("card-picker")).getByRole(
+    const selectTrigger = within(screen.getByTestId("card-select")).getByRole(
       "combobox"
     );
 
-    await act(() => user.click(selectTrigger));
+    await user.click(selectTrigger);
 
     const option = await screen.findByRole("option", { name: /Starship/i });
 
@@ -53,13 +47,13 @@ describe("Card picker", () => {
 
     render(<CardPicker cardType={cardType} setCardType={setCardType} />);
 
-    const selectTrigger = within(screen.getByTestId("card-picker")).getByRole(
+    const selectTrigger = within(screen.getByTestId("card-select")).getByRole(
       "combobox"
     );
 
     await user.click(selectTrigger);
 
-    const option = within(screen.getByRole("listbox")).getByText(/Person/);
+    const option = within(screen.getByRole("listbox")).getByText(/Person/i);
 
     await user.click(option);
 

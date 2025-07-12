@@ -5,12 +5,12 @@ import Select, { type SelectChangeEvent } from "@mui/material/Select";
 
 type CardType = "person" | "starship";
 
-type CardPickerProps = {
+type CardSelectProps = {
   cardType: CardType;
   setCardType: (event: SelectChangeEvent) => void;
 };
 
-export default function CardPicker({ cardType, setCardType }: CardPickerProps) {
+export default function CardSelect({ cardType, setCardType }: CardSelectProps) {
   return (
     <div className="flex flex-col justify-center items-center mt-5">
       <FormControl className="w-[200px]">
@@ -19,7 +19,7 @@ export default function CardPicker({ cardType, setCardType }: CardPickerProps) {
           value={cardType}
           onChange={setCardType}
           className="text-black mb-8"
-          data-testid="card-picker"
+          data-testid="card-select"
         >
           <MenuItem value="person">Person</MenuItem>
           <MenuItem value="starship">Starship</MenuItem>

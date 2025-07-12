@@ -6,7 +6,7 @@ import GameMode, {
 import usePeople from "hooks/usePeople";
 import useStarships from "hooks/useStarships";
 import { useState } from "react";
-import CardPicker from "./card-picker";
+import CardSelect from "./card-select";
 import PeopleBattleOutcome from "./people-battle-outcome";
 import StarshipsBattleOutcome from "./starships-battle-outcome";
 
@@ -42,7 +42,7 @@ export default function Battle() {
         setScore={setScore}
       />
 
-      <CardPicker cardType={cardType} setCardType={handleCardTypeChange} />
+      <CardSelect cardType={cardType} setCardType={handleCardTypeChange} />
 
       {cardType === "starship" && starshipsData && (
         <StarshipsBattleOutcome

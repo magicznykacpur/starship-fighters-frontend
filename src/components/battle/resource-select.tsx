@@ -5,17 +5,17 @@ import Select, { type SelectChangeEvent } from "@mui/material/Select";
 import type { PersonResources } from "types/person";
 import type { StarshipResources } from "types/starships";
 
-type ResourceControl = {
+type ResourceSelectProps = {
   resource: PersonResources | StarshipResources | "";
   handleResourceTypeChange: (event: SelectChangeEvent) => void;
   resources: string[];
 };
 
-export default function ResourceControl({
+export default function ResourceSelect({
   resource,
   handleResourceTypeChange,
   resources,
-}: ResourceControl) {
+}: ResourceSelectProps) {
   return (
     <FormControl className="w-[200px]">
       <InputLabel>Fight against</InputLabel>
@@ -23,6 +23,7 @@ export default function ResourceControl({
         value={resource}
         onChange={handleResourceTypeChange}
         className="text-black mb-8"
+        data-testid="resource-select"
       >
         {resources.map((resource, index) => (
           <MenuItem key={`${resource}-${index}`} value={resource}>
