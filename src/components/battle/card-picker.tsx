@@ -7,7 +7,7 @@ type CardType = "person" | "starship";
 
 type CardPickerProps = {
   cardType: CardType;
-  setCardType: (even: SelectChangeEvent) => void;
+  setCardType: (event: SelectChangeEvent) => void;
 };
 
 export default function CardPicker({ cardType, setCardType }: CardPickerProps) {
@@ -19,6 +19,7 @@ export default function CardPicker({ cardType, setCardType }: CardPickerProps) {
           value={cardType}
           onChange={setCardType}
           className="text-black mb-8"
+          data-testid="card-picker"
         >
           <MenuItem value="person">Person</MenuItem>
           <MenuItem value="starship">Starship</MenuItem>

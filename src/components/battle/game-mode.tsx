@@ -38,7 +38,7 @@ export default function GameMode({
 
   return (
     <>
-      <div className="grid grid-cols-2 gap-5 mb-5">
+      <div className="grid grid-cols-2 gap-5 mb-5" data-testid="game-mode-controls">
         <Button
           variant="outlined"
           disabled={gameMode === "single-player"}
@@ -56,11 +56,12 @@ export default function GameMode({
       </div>
 
       {gameMode === "two-players" && (
-        <div className="flex justify-around w-full mt-5">
+        <div className="flex justify-around w-full mt-5" data-testid="score-display">
           <div className="text-2xl">
             Player 1:
             <strong
               className={`ml-2 ${pickColor(score.playerOne, score.playerTwo)}`}
+              data-testid="player-one-score"
             >
               {score.playerOne}
             </strong>
@@ -69,6 +70,7 @@ export default function GameMode({
             Player 2:
             <strong
               className={`ml-2 ${pickColor(score.playerTwo, score.playerOne)}`}
+              data-testid="player-two-score"
             >
               {score.playerTwo}
             </strong>
