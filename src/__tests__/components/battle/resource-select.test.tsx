@@ -6,8 +6,6 @@ import { personResources, starshipResources } from "constants/resources";
 import type { PersonResources } from "types/person";
 import type { StarshipResources } from "types/starships";
 
-type CardType = PersonResources | StarshipResources;
-
 describe("Resource select", () => {
   it("should render resource select", () => {
     render(
