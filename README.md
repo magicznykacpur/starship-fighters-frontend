@@ -6,12 +6,11 @@ to fight against and then star battle between the cards.
 
 The card with higher attribute wins. The game supports single player and two player modes.
 
+Since this is a demo I've added .env file to the repo for simplicity.
+
 ## How to run
 
 In order to run the application you need to:
-
-- create a `.env` file with `VITE_API_URL` variable, the default api exposed for
-  this front-end is usually available at `"http://localhost:3000/api"` so that's what you can set it to
 
 - run `npm install` in order to install all the required packages
 
@@ -20,4 +19,4 @@ In order to run the application you need to:
 ## Testing
 
 To run test simply run `npm run test` in your terminal. The app uses Jest and
-react-testing library for testing
+react-testing library for testing.
