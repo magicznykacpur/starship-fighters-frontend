@@ -10,6 +10,9 @@ Since this is a demo I've added .env file to the repo for simplicity.
 
 ## How to run
 
+Project was developed using `node v24.0.0` so please use this version or above
+when installing dependencies and running tests.
+
 In order to run the application you need to:
 
 - run `npm install` in order to install all the required packages
