@@ -10,7 +10,7 @@ describe("Resource select", () => {
   it("should render resource select", () => {
     render(
       <ResourceSelect
-        resource="mass"
+        resource="maxSpeed"
         handleResourceTypeChange={(_: SelectChangeEvent) => undefined}
         resources={starshipResources}
       />

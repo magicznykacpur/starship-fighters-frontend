@@ -42,7 +42,6 @@
     "globals": "^16.3.0",
     "jest": "^30.0.4",
     "jest-environment-jsdom": "^30.0.4",
-    "ts-jest": "^29.4.0",
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.35.1",
     "vite": "^7.0.4"
@@ -55,7 +54,6 @@
       "jsx",
       "json"
     ],
-    "preset": "ts-jest",
     "rootDir": "src",
     "moduleDirectories": [
       "node_modules",
@@ -63,7 +61,7 @@
     ],
     "testEnvironment": "jsdom",
     "transform": {
-      "^.+\\.(tsx)$": [
+      "^.+\\.(tsx|ts)$": [
         "babel-jest",
         {
           "presets": [
