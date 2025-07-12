@@ -32,7 +32,7 @@ export default function Battle() {
   };
 
   return (
-    <div className="flex flex-col items-center mt-10">
+    <div className="flex flex-col items-center mt-5">
       <GameMode
         gameMode={gameMode}
         score={score}

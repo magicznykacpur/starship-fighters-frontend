@@ -56,7 +56,7 @@ export default function GameMode({
       </div>
 
       {gameMode === "two-players" && (
-        <div className="flex justify-around w-full mt-5" data-testid="score-display">
+        <div className="flex justify-around w-full" data-testid="score-display">
           <div className="text-2xl">
             Player 1:
             <strong

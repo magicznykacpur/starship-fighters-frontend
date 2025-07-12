@@ -12,7 +12,7 @@ type CardSelectProps = {
 
 export default function CardSelect({ cardType, setCardType }: CardSelectProps) {
   return (
-    <div className="flex flex-col justify-center items-center mt-5">
+    <div className="flex flex-col justify-center items-center">
       <FormControl className="w-[200px]">
         <InputLabel>Card type</InputLabel>
         <Select
