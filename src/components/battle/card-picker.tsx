@@ -1,4 +1,3 @@
-import { Button } from "@mui/material";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -9,18 +8,9 @@ type CardType = "person" | "starship";
 type CardPickerProps = {
   cardType: CardType;
   setCardType: (even: SelectChangeEvent) => void;
-  selectRandomFighter: () => void;
-  handleResetCards: () => void;
-  isGameReady: boolean;
 };
 
-export default function CardPicker({
-  cardType,
-  setCardType,
-  selectRandomFighter,
-  handleResetCards,
-  isGameReady,
-}: CardPickerProps) {
+export default function CardPicker({ cardType, setCardType }: CardPickerProps) {
   return (
     <div className="flex flex-col justify-center items-center mt-5">
       <FormControl className="w-[200px]">
@@ -34,20 +24,6 @@ export default function CardPicker({
           <MenuItem value="starship">Starship</MenuItem>
         </Select>
       </FormControl>
-
-      <div className="grid grid-cols-2 gap-5">
-        <Button
-          variant="contained"
-          color="success"
-          onClick={selectRandomFighter}
-          disabled={isGameReady}
-        >
-          Pick random {cardType}
-        </Button>
-        <Button variant="contained" color="success" onClick={handleResetCards}>
-          Reset cards
-        </Button>
-      </div>
     </div>
   );
 }
