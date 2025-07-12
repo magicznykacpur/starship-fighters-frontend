@@ -1,17 +1,22 @@
 import type { SelectChangeEvent } from "@mui/material";
 import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import CardPicker from "components/battle/card-select";
+import CardSelect from "components/battle/card-select";
 
 type CardType = "person" | "starship";
 
-describe("Card picker", () => {
-  it("should render card picker", () => {
-    const mockedSetCardType = (_: SelectChangeEvent) => undefined;
+describe("Card select", () => {
+  it("should render card select", async () => {
+    render(
+      <CardSelect
+        cardType="person"
+        setCardType={(_: SelectChangeEvent) => undefined}
+      />
+    );
 
-    render(<CardPicker cardType="person" setCardType={mockedSetCardType} />);
-
-    expect(screen.findByTestId("card-picker")).toBeDefined();
+    const cardSelect = screen.getByTestId("card-select")
+    
+    expect(cardSelect).toBeDefined();
   });
 
   it("should change to starship card", async () => {
@@ -22,15 +27,15 @@ describe("Card picker", () => {
       cardType = event.target.value as CardType;
     };
 
-    render(<CardPicker cardType={cardType} setCardType={setCardType} />);
+    render(<CardSelect cardType={cardType} setCardType={setCardType} />);
 
     const selectTrigger = within(screen.getByTestId("card-select")).getByRole(
       "combobox"
     );
 
     await user.click(selectTrigger);
-
-    const option = await screen.findByRole("option", { name: /Starship/i });
+    
+    const option = within(screen.getByRole("listbox")).getByText(/Starship/i);
 
     await user.click(option);
 
@@ -45,7 +50,7 @@ describe("Card picker", () => {
       cardType = event.target.value as CardType;
     };
 
-    render(<CardPicker cardType={cardType} setCardType={setCardType} />);
+    render(<CardSelect cardType={cardType} setCardType={setCardType} />);
 
     const selectTrigger = within(screen.getByTestId("card-select")).getByRole(
       "combobox"
